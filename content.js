@@ -22,9 +22,9 @@ function createRadio(id, color, url, flag) {
 
     const radio = document.createElement('input');
     radio.type = 'radio';
-    radio.name = url; 
+    radio.name = extractDomain(url); 
     radio.id = id;
-    radio.dataset.url = url; 
+    radio.dataset.url = extractDomain(url); 
     radio.dataset.flag = flag;
 
     const labelElement = document.createElement('label');
@@ -107,7 +107,7 @@ document.addEventListener('change', function(event) {
 
 async function sendDataOnPageLoad() {
     try {
-        const links = Array.from(document.querySelectorAll('div.yuRUbf a[href]')).map(link => link.href);
+        const links = Array.from(document.querySelectorAll('div.yuRUbf a[href]')).map(link => extractDomain(link.href));
         const requestData = links.map(url => ({
             url,
             flag: "flag_value",
@@ -150,6 +150,12 @@ function pollServerForRadioUpdates() {
             console.error('Ошибка при обновлении состояния чекбоксов из базы данных: ' + error);
         }
     }, 3000); 
+}
+
+function extractDomain(url) {
+    const domainRegex = /^https?:\/\/(?:www\.)?([^\/]+)/;
+    const match = url.match(domainRegex);
+    return match && match[1] ? match[1] : null;
 }
 
 let radioDataArray = [];
