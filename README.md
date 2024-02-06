@@ -4,7 +4,7 @@
 Для установки расширения Google Marks доступны два способа:
 
 1. Скачать из релизов
-2. Клонирование репозитория: Склонируйте репозиторий на свой компьютер с помощью следующей команды: `git clone https://github.com/yourusername/google-marks.git`
+2. Клонирование репозитория: Склонируйте репозиторий на свой компьютер с помощью следующей команды: `git clone https://github.com/reidjJava/google-marks.git`
 
 Включите режим разработчика в Chrome: Откройте Google Chrome и перейдите по адресу chrome://extensions/.
 
@@ -14,3 +14,7 @@
 
 <h3>Использование</h3>
 После установки перейдя в поисковик рядом с каждой ссылкой появятся 3 кпопки (Красная, Жёлтая, Зелёная)
+
+<p align="center">
+ <img width="300px" src="https://github.com/reidjJava/google-marks/blob/main/images/img.png"/>
+</p>
