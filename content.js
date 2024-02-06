@@ -63,9 +63,13 @@ function handleRadioChange(event) {
 }
 
 function addRadioAndEventListeners(link) {
-    const radioCross = createRadio('cross', 'red', link.href);
-    const radioQuestion = createRadio('question', 'yellow', link.href);
-    const radioCheck = createRadio('check', 'green', link.href);
+    const domain = extractDomain(link.href);
+    
+    if (domain === 'translate.google.com') return;
+
+    const radioCross = createRadio('cross', 'red', domain);
+    const radioQuestion = createRadio('question', 'yellow', domain);
+    const radioCheck = createRadio('check', 'green', domain);
 
     const radioContainer = document.createElement('div');
     radioContainer.style.display = 'flex'; 
