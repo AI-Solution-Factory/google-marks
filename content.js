@@ -17,7 +17,7 @@ async function sendDataToServer(url, dataArray) {
     }
 }
 
-function createRadio(id, image, url, flag) {
+function createRadio(id, color, url, flag) {
     const radioContainer = document.createElement('div');
 
     const radio = document.createElement('input');
@@ -30,14 +30,16 @@ function createRadio(id, image, url, flag) {
     const labelElement = document.createElement('label');
     labelElement.setAttribute('for', id);
 
-    const imgElement = document.createElement('img');
-    imgElement.src = chrome.runtime.getURL('images/' + image);
-    imgElement.width = 16;
-    imgElement.height = 16;
-
-    labelElement.appendChild(imgElement);
     radioContainer.appendChild(radio);
     radioContainer.appendChild(labelElement);
+
+    const styleElement = document.createElement('style');
+    styleElement.textContent = `
+        input[type=radio]#${id} {
+            accent-color: ${color};
+        }
+    `;
+    document.head.appendChild(styleElement);
 
     return radioContainer;
 }
@@ -61,11 +63,13 @@ function handleRadioChange(event) {
 }
 
 function addRadioAndEventListeners(link) {
-    const radioCross = createRadio('cross', 'red.png', link.href);
-    const radioQuestion = createRadio('question', 'yellow.png', link.href);
-    const radioCheck = createRadio('check', 'green.png', link.href);
+    const radioCross = createRadio('cross', 'red', link.href);
+    const radioQuestion = createRadio('question', 'yellow', link.href);
+    const radioCheck = createRadio('check', 'green', link.href);
 
     const radioContainer = document.createElement('div');
+    radioContainer.style.display = 'flex'; 
+    radioContainer.style.alignItems = 'center'; 
     radioContainer.appendChild(radioCross);
     radioContainer.appendChild(radioQuestion);
     radioContainer.appendChild(radioCheck);
