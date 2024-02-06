@@ -154,4 +154,5 @@ function pollServerForRadioUpdates() {
 
 let radioDataArray = [];
 
-sendDataToServer(SERVER_URL_ADD_DATA, radioDataArray)
+sendDataToServer(SERVER_URL_ADD_DATA, radioDataArray);
+pollServerForRadioUpdates();
